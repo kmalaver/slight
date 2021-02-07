@@ -1,6 +1,9 @@
 import domParser from './domParser';
 import setEventHandlers from './eventHandler';
 
+// types
+/** @typedef { import('./types').componentConfig } componentConfig */
+
 const setState = (data = {}, instance) => {
   const handler = {
     get(target, key) {
@@ -23,17 +26,15 @@ const setState = (data = {}, instance) => {
 
 class Component {
   /**
-   *
-   * @param {{selector:string,template:function, data:object}} options
+   * @param {componentConfig} options
    */
-  constructor(options) {
-    this.element = document.querySelector(options.selector);
-    this.template = options.template;
-    this.functions = options.functions;
-    this.data = setState(options.data, this);
-
+  constructor({ selector, template, functions, data }) {
+    this.element =
+      document.querySelector(selector) || document.createElement('div');
+    this.template = template;
+    this.functions = functions;
+    this.data = setState(data, this);
     this._bindFunctions();
-    this.render();
   }
 
   render() {
@@ -44,6 +45,9 @@ class Component {
       setEventHandlers(node, this);
     }
     this.element.appendChild(fragment);
+    console.log(this.element.outerHTML);
+
+    return this.element.outerHTML;
   }
 
   _removeChilds() {
