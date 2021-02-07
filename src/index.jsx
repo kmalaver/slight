@@ -1,4 +1,7 @@
+import s from './createElement';
 import Component from './component';
+
+/** @jsx s */
 
 const List = new Component({
   data: {
@@ -20,13 +23,13 @@ const Header = new Component({
 
 const App = new Component({
   selector: '#app',
-  template: () =>
-    ` 
-      ${Header.render()}
-      <h1>title</h1>
-      <h2>subtitle</h1>
-      ${List.render()}
-    `,
+  template: () => ``
 });
 
 App.render();
+
+const Comp = () => {
+
+};
+
+console.log(<div id="holaYa">hola</div>);
