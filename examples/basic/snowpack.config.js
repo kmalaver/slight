@@ -3,29 +3,21 @@ module.exports = {
   mount: {
     public: { url: '/', static: true },
     src: { url: '/dist' },
-    '../../src': { url: '/dist' },
+    '../../src': { url: '/dist/slight' },
   },
-
-  plugins: [
-    /* ... */
-  ],
-  routes: [
-    /* Enable an SPA Fallback in development: */
-    // {"match": "routes", "src": ".*", "dest": "/index.html"},
-  ],
+  alias: {
+    // Type 1: Package Import Alias
+    '@slight': '../../src/slight',
+  },
   optimize: {
     /* Example: Bundle your final build: */
     bundle: true,
     minify: true,
     target: 'es2018',
   },
-  packageOptions: {
-    /* ... */
-  },
-  devOptions: {
-    /* ... */
-  },
+
   buildOptions: {
     /* ... */
+    jsxFactory: 'h',
   },
 };

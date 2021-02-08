@@ -7,7 +7,7 @@ const setState = (data = {}, instance) => {
         return target[key];
       }
     },
-    set: function (target, name, value) {
+    set(target, name, value) {
       target[name] = value;
       instance.render();
       return true;

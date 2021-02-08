@@ -1,6 +1,9 @@
 export type componentConfig = {
   selector: string
   data: object
-  template: (data:object) => string
-  functions: object
+  template: (props:object) => string
+}
+
+export type ComponentType = {
+  render: () => void 
 }

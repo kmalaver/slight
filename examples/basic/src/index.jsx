@@ -1,39 +1,31 @@
-/** @jsx s */
-import s from '../../../src/createElement';
-import Component from '../../../src/component';
-
-
-const Header = new Component({
-  template: (_, props) => (
-    <header>
-      <h1>{props.title}</h1>
-    </header>
-  ),
-});
+import { Component, createElement as h } from '@slight';
+import Header from './components/Header';
 
 const App = new Component({
   selector: '#app',
   data: {
-    counter: 0
-  },
-  functions: {
-    increment() {
-      console.log(this)
-      this.data.counter++
-    }
+    counter: 0,
   },
 
-  template: ({counter}) =>{ 
-    return(
-    <div>
-      <Header title='title default' />
-      <main>{counter}</main>
-      <button s-event s-click='increment'>increase</button>
-      {counter%2?
-      <p>inpar</p>  : ''
-      }
-      <footer>footer</footer>
-    </div>
-  )}
+  template() {
+    const data = this.getData();
+
+    const increment = () => {
+      data.counter++;
+      console.log('hola');
+    };
+
+    return (
+      <div>
+        <Header title="title default" />
+        <main>{data.counter}</main>
+        <button type="button" s-click={increment}>
+          increase
+        </button>
+        <footer>footer</footer>
+      </div>
+    );
+  },
 });
+
 App.render();
