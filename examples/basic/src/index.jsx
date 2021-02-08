@@ -1,25 +1,39 @@
+/** @jsx s */
 import s from '../../../src/createElement';
 import Component from '../../../src/component';
 
-/** @jsx s */
 
 const Header = new Component({
-  template: () => (
+  template: (_, props) => (
     <header>
-      <h1>Header</h1>
+      <h1>{props.title}</h1>
     </header>
   ),
 });
 
 const App = new Component({
   selector: '#app',
-  template: () => (
+  data: {
+    counter: 0
+  },
+  functions: {
+    increment() {
+      console.log(this)
+      this.data.counter++
+    }
+  },
+
+  template: ({counter}) =>{ 
+    return(
     <div>
-      <Header />
-      <main></main>
+      <Header title='title default' />
+      <main>{counter}</main>
+      <button s-event s-click='increment'>increase</button>
+      {counter%2?
+      <p>inpar</p>  : ''
+      }
       <footer>footer</footer>
     </div>
-  ),
+  )}
 });
-
 App.render();
