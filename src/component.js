@@ -1,27 +1,8 @@
 import setEventHandlers from './eventHandler';
+import setState from './setState';
 
 // types
 /** @typedef { import('./types').componentConfig } componentConfig */
-
-const setState = (data = {}, instance) => {
-  const handler = {
-    get(target, key) {
-      if (typeof target[key] === 'object' && target[key] !== null) {
-        return new Proxy(target[key], handler);
-      } else {
-        return target[key];
-      }
-    },
-    set: function (target, name, value) {
-      target[name] = value;
-      console.log(target[name]);
-      instance.render();
-      return true;
-    },
-  };
-
-  return new Proxy(data, handler);
-};
 
 class Component {
   /** @param {componentConfig} */
@@ -34,10 +15,10 @@ class Component {
     this._bindFunctions();
   }
 
-  render() {
+  render(props) {
     this._removeChilds();
-    const template = this.template();
-    const list = template.querySelectorAll('[event]');
+    const template = this.template(this.data, props);
+    const list = template.querySelectorAll('[s-event]');
     for (const node of list) {
       setEventHandlers(node, this);
     }

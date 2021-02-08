@@ -1,5 +1,4 @@
 const createElement = function (tag, attrs, children) {
-  console.log(typeof tag);
   if (typeof tag !== 'object') {
     var element = document.createElement(tag);
 
@@ -24,7 +23,7 @@ const createElement = function (tag, attrs, children) {
     return element;
   }
 
-  return tag.render();
+  return tag.render(attrs);
 };
 
 export default createElement;
