@@ -1,11 +1,23 @@
+/** @typedef { import('./types').createElementType } createElementType */
+
 import setEventHandler from './eventHandler';
 
-const createElement = function (tag, attrs) {
+const EVENT_PREFIX = 'on';
+
+/**
+ * creates a htmlElement passing tag and attributes
+ * @type {createElementType}
+ */
+const createElement = function (tag, attrs, ...children) {
   if (typeof tag !== 'object') {
     const element = document.createElement(tag);
     for (const name in attrs) {
-      if (name.substr(0, 2) === 's-') {
-        setEventHandler(element, name, attrs[name]);
+      if (name.substr(0, EVENT_PREFIX.length) === EVENT_PREFIX) {
+        setEventHandler(
+          element,
+          name.substring(EVENT_PREFIX.length),
+          attrs[name],
+        );
       } else if (name && attrs.hasOwnProperty(name)) {
         const value = attrs[name];
         if (value === true) {
@@ -16,8 +28,7 @@ const createElement = function (tag, attrs) {
       }
     }
 
-    for (let i = 2; i < arguments.length; i++) {
-      const child = arguments[i];
+    for (const child of children) {
       if (child || child === 0) {
         element.appendChild(
           child.nodeType == null
@@ -26,6 +37,7 @@ const createElement = function (tag, attrs) {
         );
       }
     }
+
     return element;
   }
 

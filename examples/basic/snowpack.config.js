@@ -7,7 +7,7 @@ module.exports = {
   },
   alias: {
     // Type 1: Package Import Alias
-    '@slight': '../../src/slight',
+    '@slight': '../../src/index',
   },
   optimize: {
     /* Example: Bundle your final build: */

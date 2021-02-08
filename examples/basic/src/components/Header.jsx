@@ -6,7 +6,7 @@ const Header = new Component({
   },
 
   template({ title }) {
-    const data = this.getData();
+    const data = this.data;
     const change = () => {
       data.active = !data.active;
     };
@@ -14,7 +14,7 @@ const Header = new Component({
     return (
       <header>
         <h1>{title}</h1>
-        <button s-click={change}>{data.active ? 'active' : 'unactive'}</button>
+        <button onclick={change}>{data.active ? 'active' : 'unactive'}</button>
       </header>
     );
   },

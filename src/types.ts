@@ -1,9 +1,7 @@
 export type componentConfig = {
   selector: string
   data: object
-  template: (props:object) => string
+  template: (props:object) => HTMLElement
 }
 
-export type ComponentType = {
-  render: () => void 
-}
+export type createElementType = (tag:string|object, attrs: object, ...children:HTMLElement[]) => HTMLElement

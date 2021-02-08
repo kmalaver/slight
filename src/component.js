@@ -1,29 +1,30 @@
-import setEventHandlers from './eventHandler';
-import setState from './setState';
-
 /** @typedef { import('./types').componentConfig } componentConfig */
 
+import setState from './setState';
+
 class Component {
-  /** @param {componentConfig} */
-  constructor({ selector, template, data }) {
-    this.element =
-      document.querySelector(selector) || document.createElement('div');
+  /**
+   * @param {componentConfig}
+   * @param {string} selector
+   */
+  constructor({ template, data }, selector) {
     this.template = template.bind(this);
     this.data = setState(data, this);
     this.props = {};
+
+    if (selector) {
+      document.getElementById(selector).appendChild(this.render());
+    }
   }
 
   render() {
     const newElement = this.template(this.props);
 
-    this.element.firstChild?.remove();
-    this.element.appendChild(newElement);
+    // replace element and reasign reference
+    this.element?.replaceWith(newElement);
+    this.element = newElement;
 
     return this.element;
-  }
-
-  getData() {
-    return this.data;
   }
 }
 
