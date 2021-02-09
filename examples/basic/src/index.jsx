@@ -1,31 +1,31 @@
-import { Component, createElement as h } from '@slight';
-import Header from './components/Header';
+import { Component, h } from 'slightjs';
+import Header from './Header';
 
 const App = new Component(
   {
     data: {
       counter: 0,
+      title: 'slight',
     },
 
     template() {
-      const data = this.data;
-
+      // can be passed functions to element events
+      // using on + eventname
       const increment = () => {
-        data.counter++;
-        console.log(data.counter);
+        this.data.counter++;
       };
 
       return (
         <div>
-          <Header title="title default" />
-          <main>{data.counter}</main>
-          <button type="button" onclick={increment}>
-            increase
-          </button>
-          <footer>footer</footer>
+          <Header title={this.data.title} subtitle="example" />
+          <main>{this.data.counter}</main>
+          <button onclick={increment}>increment</button>
         </div>
       );
     },
   },
   'app',
 );
+
+// data also can be modified externally
+App.data.title = 'New Title';

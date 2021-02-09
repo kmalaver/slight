@@ -1,6 +1,7 @@
 {
   "name": "slightjs",
   "version": "1.0.0",
+  "description": "Slight is a small library for reactive user interfaces creating",
   "author": {
     "name": "kevinmalaverr"
   },

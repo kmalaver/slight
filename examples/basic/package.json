@@ -13,5 +13,8 @@
   "license": "ISC",
   "devDependencies": {
     "snowpack": "^3.0.11"
+  },
+  "dependencies": {
+    "slightjs": "^1.0.0"
   }
 }
