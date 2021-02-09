@@ -1,15 +1,17 @@
 {
-  "name": "slight",
+  "name": "slightjs",
+  "version": "1.0.0",
+  "author": {
+    "name": "kevinmalaverr"
+  },
+  "repository": "kevinmalaverr/slight",
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
-    "test": "echo \"This template does not include a test runner by default.\" && exit 1",
     "format": "prettier --write \"src/**/*.js\"",
     "lint": "prettier --check \"src/**/*.js\""
   },
-  "dependencies": {
-    "hyperscript": "^2.0.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "prettier": "^2.0.5",
     "snowpack": "^3.0.1"
